@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            html {
+                background-color: #808080;
+            }
+            body {
+                width: 800px;
+                background-color: #FFF;
+                margin: 30px auto;
+                padding: 30px 50px;
+                font-size: 1rem;
+                font-family: -apple-system,blinkmacsystemfont,Segoe UI,roboto,helvetica,arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+            }
+            .pb-5 {
+                padding-bottom: 5px;
+            }
+            .mb-5 {
+                margin-bottom: 5px;
+            }
+            .mb-10 {
+                margin-bottom: 15px;
+            }
+            .mt-10 {
+                margin-top: 15px;
+            }
+            .head, .info {
+                display: flex;
+                justify-content: space-between;
+            }
+            .half {
+                width: 50%;
+            }
+            .first {
+                display: flex;
+                justify-content: space-between;
+            }
+            .right {
+                text-align: right;
+
+            }
+            .right p:nth-of-type(1) {
+                margin-bottom: 20px;
+            }
+            hr {
+                margin: 20px 0;
+            }
+            .head-end {
+                height: 5px;
+                background-color: #808080;
+            }
+            .dashed {
+                border: dashed 1px #808080;
+            }
+            .headers {
+                height: 3.5rem;
+                background-color: #808080;
+                color: white;
+                display: flex;
+                align-items: center;
+                padding-left: 20px;
+
+            }
+            .row {
+                display: flex;
+                align-items: center;
+            }
+            .third {
+                width: 33.333%;
+            }
+            .item {
+                border-bottom: 1px solid #808080;
+                padding: 20px;
+            }
+            .total {
+                margin-top: 20px;
+            }
+            .notes {
+                display: flex;
+                justify-content: space-between;
+            }
+            li {
+                font-size: 0.8rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="head">
+            <div class="half">
+                <h1><strong>INVOICE</strong></h1>
+            </div>
+            <div class="half right">
+                <div class="first">
+                    <p><strong>Invoice Number:</strong></p>
+                    <p> INV-0012</p>
+                </div>
+                <div class="first">
+                    <p><strong>Invoice Date:</strong></p>
+                    <p>13/07/2022</p>
+                </div>
+            </div>
+        </div>
+        <hr class="head-end">
+        <div class="info">
+            <div class="half">
+                <h2 class="mb-10">Billing Information</h2>
+                <h3 class="mb-5"><strong>Company</strong></h3>
+                <p class="mb-10">One Central</p>
+                <h3 class="mb-5"><strong>Name</strong></h3>
+                <p class="mb-10">Daniel Obode</p>
+                <h3 class="mb-5"><strong>Address</strong></h3>
+                <p class="mb-10">63, Akanro Street, Mushin, Ilasa.</p>
+                <h3 class="mb-5"><strong>Email</strong></h3>
+                <p class="mb-10">John@exampe.com</p>
+            </div>
+            <div class="half">
+                <h2 class="mb-10">Shipping Information</h2>
+                <h3 class="mb-5"><strong>Name</strong></h3>
+                <p class="mb-10">Daniel Obode</p>
+                <h3 class="mb-5"><strong>Address</strong></h3>
+                <p class="mb-10">63, Akanro Street, Mushin, Ilasa.</p>
+            </div>
+        </div>
+        <hr class="dashed">
+        <div>
+            <h2 class="mb-10">Products</h2>
+            <div class="headers mt-10">
+                <div class="third">
+                    <h3>Description</h3>
+                </div>
+                <div class="third">
+                    <h3>Quantity</h3>
+                </div>
+                <div class="third">
+                    <h3>Unit Price</h3>
+                </div>
+            </div>
+            <div class="row item">
+                <div class="third">
+                    <h4>Cotton Male T-Shirt</h4>
+                    <p>T-shirt</p>
+                    <p>$84.00</p>
+                </div>
+                <div class="third">
+                    <p>2</p>
+                </div>
+                <div class="third">
+                    <p>$42.00</p>
+                </div>
+            </div>
+            <div class="row total mt-10">
+                <div class="third">
+                </div>
+                <div class="third">
+                    <p>Subtotal</p>
+                    <p>Shipping</p>
+                    <p>Tax</p>
+                    <hr>
+                    Total:
+                </div>
+                <div class="third">
+                    <p>$82.00</p>
+                    <p>$52.00</p>
+                    <p>$0.00</p>
+                    <hr>
+                    <h3>$136.00</h3>
+                </div>
+            </div>
+        </div>
+        <hr class="dashed">
+        <div class="notes mt-10">
+            <h4>Additional Notes</h4>
+            <p>No additional notes.</p>
+        </div>
+        <hr class="head-end">
+        <div>
+            <h5>Terms and conditions</h5>
+            <ol>
+                <li>The Seller shall not be liable to the buyer directly or indirectly for any loss suffered by the buyer.</li>
+                <li>The Seller warrants the product for one (1) year from the dat of shipment.</li>
+                <li>Any purchase order received by the seller will be interpreted as accepting this offer and the sales offer in writing. The buyer may purchase the product 
+                    in this offer only under the Terms and conditions of the seller included in this offer.
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

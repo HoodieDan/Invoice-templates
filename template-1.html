@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Template 1</title>
+
+        <link rel="stylesheet" type="text/css" href="">
+        <style>
+            *{
+                font-size: 16px;
+                    line-height: 24px;
+                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                    color: #555;
+            }
+            html {
+                background-color: #999;
+            }
+            body {
+                width: 800px;
+                background-color: #FFF;
+                margin: 30px auto;
+            }
+            .body{
+                padding-bottom: 20px;
+            
+            }
+            .invoice-box {
+                    max-width: 800px;
+                    margin: auto;
+                    padding: 30px;
+                    border: 1px solid #eee;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                    color: #555;
+                }
+                
+                .invoice-box table {
+                    width: 100%;
+                    line-height: inherit;
+                    text-align: left;
+                
+                }
+                
+                .invoice-box table td {
+                    padding: 5px;
+                    vertical-align: top;
+                
+                }
+                
+                .invoice-box table tr td:nth-child(2) {
+                    text-align: right;
+                }
+            input[type] {
+            border: none;
+            border-bottom: 1px solid grey;
+            
+            }
+            input[type=date]{
+            border: none;
+            
+            width: 140px;
+            }
+                
+            input[type=number1]{
+            border: none;
+            border-bottom: 1px solid grey;
+            width: 137px;
+            }
+            input[type=numberquan]{
+            border: none;
+            width: 60px;
+            font-size: 16px;
+            text-align: left;
+            
+            }
+            input[type=numberitem]{
+            border: none;
+            width: 100px;
+            font-size: 16px;
+            text-align: left;
+            
+            }
+
+            #num1{
+            border: none;
+            width: 56px;
+            font-size: 16px;
+            text-align: left;
+            }
+            input[type=numberquan2]{
+            border: none;
+            width: 60px;
+            font-size: 16px;
+            position: relative;
+            left: 73px;
+            font-weight: bold;
+            }
+            #drpLoginType{
+            border: none;
+            }
+            
+
+                
+            .title {
+                    font-size: 45px;
+                    line-height: 45px;
+                    color: #333;
+                }
+                
+                .invoice-box table tr.information table td {
+                    padding-bottom: 40px;
+                
+                }
+                
+                .invoice-box table tr.heading td {
+                    background: #eee;
+                    border-bottom: 2px solid #ddd;
+                    font-weight: bold;
+                text-align: left;
+                }
+                
+                .invoice-box table tr.details td {
+                    padding-bottom: 20px;
+                text-align: left;
+                }
+                
+                .invoice-box table tr.item td{
+                    border-bottom: 1px solid #eee;
+                text-align: left;
+                }
+            p1{
+            font-size: 25px;
+                    line-height: 45px;
+            padding-top: 20px;
+            
+            }
+            #qwert{
+            text-align: left;
+            position: relative;
+            left: 240px;
+            }
+            input[type=text],input[type=email]{
+            border: none; 
+            
+            }
+            .p2{
+            text-align: left;
+            }
+
+            #num2{
+            border: none;
+            width: 66px;
+            font-size: 16px;
+            text-align: left;
+                position: relative;
+            left: 89px;
+            
+            }
+
+            p2,p3{
+            position: relative;
+            left: 94px;
+            
+            }
+
+
+
+            button {
+            padding: 10px 24px;
+            background-color: #e7e7e7; color: black;
+            width: 250px;
+            right: 250px;
+            position: relative;
+            }
+            button:hover {
+            background-color: white;
+            }
+            td1{
+            
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                <table>
+                <tr>
+                    <td class="title">
+                        <img src="data:image/png;base64,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" style="width:100%; max-width:100px;">
+                    </td>
+                    <td id="qwert">
+                        Invoice #:  <input type="number"
+                        id="num1"
+                            placeholder="1"><br>
+                        Created: <input type="date"><br>
+                        Due: <input type="date">
+                    </td>
+                    
+                    </tr>
+                
+                </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                <table>
+                    <tr>
+                    <td >
+                        
+                    
+                    <input type="text"
+                            
+                            placeholder="HP, Inc."><br>
+                    
+                    
+                        <input type="email"
+                            placeholder="Sunny Road"><br>
+                        
+                        <input type="text"
+                                placeholder="Sunnyville, CA 12345">
+                    </td>
+
+                    <td id="qwert1">
+                    
+                        <input type="text"
+                            placeholder="Acme Corp."><br>
+                    <input type="text"
+                            placeholder="John Doe"><br>
+                        <input type="text"
+                            placeholder="john@example.com"><br>
+                    
+                    </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                Payment Method
+                </td>
+        <td><input type="hidden" id="custId" name="custId" value="3487"></td>
+                <td>
+                <!-- Check # -->
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                <select name="drpLoginType" id="drpLoginType">
+                    <option value="Check">Check</option>
+                    <option value="Ewallets">Ewallets</option>
+                    <option value="Credit Cards">Credit Cards</option>
+                    <option value="Cash">Cash</option>
+                    </select>
+                </td>
+        <td><input type="hidden" id="custId" name="custId" value="3487"></td>
+                <td>
+                <input type="numberquan"
+                            placeholder="1000">
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                Item
+                </td>
+        <td>
+                Quantity
+                </td>
+                <td>
+                Price
+                </td>
+            </tr>
+        
+
+            <tr class="item">
+                <td>
+                <input type="numberquan"
+                            placeholder="GPU">
+                </td>
+        <td>
+                <input type="number"
+                        id="num1"
+                            placeholder="1">
+                </td>
+                <td>
+                <input type="numberquan"
+                            placeholder="$300.00">
+                </td>
+            </tr>
+
+            <tr class="item">
+                <td>
+                <input type="numberitem"
+                            placeholder="Mother Board">
+                </td>
+
+                <td>
+                <input type="number"
+                        id="num1"
+                            placeholder="1">
+                </td>
+                <td>
+                <input type="numberquan"
+                            placeholder="$275.00">
+                </td>
+            </tr>
+
+            <tr class="item last">
+                <td>
+                <input type="numberitem"
+                            placeholder="Monitor">
+                </td>
+
+                <td>
+                <input type="number"
+                        id="num1"
+                            placeholder="1">
+                </td>
+                <td>
+                <input type="numberquan"
+                            placeholder="$190.00">
+                </td>
+            </tr>
+
+            <tr class="total">
+                <td></td>
+
+                <td>
+                
+                <p2>Sub-total: $</p2></strong> <input type="number"
+                        id="num2"
+                            placeholder="765.00">
+                </td>
+            </tr>
+        <tr class="total">
+                <td></td>
+
+                <td>
+                
+                <p2>Tax(15%): $ </p2> <input type="number"
+                        id="num2"
+                            placeholder="153.00">
+                </td>
+            
+            </tr>
+            <tr class="total">
+                <td></td>
+
+                <td>
+                
+        <p3>Total $</p3> <input type="number"
+                        id="num2"
+                            placeholder="918.00">
+                </td>
+            </tr>
+            </table>
+
+        <hr></hr>
+        <br>
+        <br>
+        <table>
+        <tr>
+            
+            <td> <td colspan="2" align="right">
+                    <button>Pay Invoice</button></td>
+        </tr>
+        
+        </table>
+
+        </div>
+
+    </body>
+
+</html>

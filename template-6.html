@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      /*=========================== TYPOGRAPHY =========================*/
+      html {
+        background-color: #999;
+      }
+
+      #invoice{font-family: "Helvetica", Helvetica, Arial, Verdana, sans-serif !important;
+                width: 800px;
+                background-color: #FFF;
+                margin: 30px auto;}
+      #invoice h1 {margin: 0;color: #555;font-size: 24px;text-transform: uppercase;}
+      #invoice h2, #invoice h3 {color:#000; text-transform: none;}
+      #invoice h2 {margin: 10px 0;font-size: 14pt;}
+      #invoice-amount td, th {font-size: 10pt;}
+      #invoice-header #company-address {text-align: right; font-size: 11pt; line-height: 14pt;}
+      #invoice #client-details, #invoice-info p {font-size: 10pt; line-height: 14pt;}
+      #invoice #invoice-other, #invoice #payment-details {font-size: 10pt; line-height: 14pt;}
+      #invoice-info h2, #invoice-info h3 {margin: 0; font-weight: normal;}
+      #invoice #invoice-info h2{text-transform:uppercase; font-size: 18pt;}
+      #invoice #invoice-info h3 {font-size:12pt;}
+      #invoice #invoice-info p {text-align:right;margin-top:0}
+      #invoice-info #payment-total{display:none}
+      #comments {font-weight:bold;margin-top:0; font-size:10pt}
+      #invoice #invoice-info h2, #invoice #company-address div.email, #invoice #invoice-other h2, #invoice #payment-details h2 {color: #0000FF;}
+      #invoice #invoice-other h2, #invoice #payment-details h2 {font-weight: normal; text-transform: uppercase;}
+
+      /*=========================== LAYOUT =========================*/
+
+      #invoice {padding:0 1cm 1cm 2.5cm; background: #fff url(http://www.newsworthyvision.com/archive/elements/blue-bg.png) top left repeat-y; }
+      #invoice-header .logo {float:left;}
+      #invoice-header{margin-top:1.5cm; border-bottom:1px solid #0000FF;padding-bottom:10px; overflow:hidden}
+      * html #invoice-header {height:1%}
+      #invoice-blank-header {margin-top: 1.6cm;}
+      #invoice-info{margin: 0.7cm 0 20px 0; width:55%; float:right; text-align:right;}
+      #invoice-info #payment-terms {display:none;}
+      #invoice-info #payment-due {font-style: italic;}
+      #company-address {margin: 0; padding: 0; width:300px; float:right}
+      #client-details {margin:0.7cm 0 20px 0cm;float:left;width:35%}   /* Positioned to appear in a standard envelope window when printed */
+      #invoice-other {text-align: right;clear:both; float: right;width:50%;margin-top:0}
+      #invoice #payment-details{float:left; width:45%;margin-top:0 }
+      #payment-details .sort-code, #payment-details .account-number, #payment-details .payment-reference {clear: left;}
+      #payment-details strong {font-weight: normal; float: left; width: 12em;}
+      #invoice-other strong {font-weight: normal; float: left; width: 18em; }
+      #invoice-other #comments {clear: both; margin-top: 0em; font-weight: normal; color: #0000FF;}
+      #invoice-other #contract-number{margin-bottom:3em}
+
+      #comments{clear:both; padding-top:0.3cm}
+
+      /*=========================== TABLES =========================*/
+
+      #invoice table#invoice-amount { border-collapse:collapse; width:100%;clear:both;margin:1cm 0 0.4cm 0; }
+      #invoice-amount th {text-align: left;white-space: nowrap;padding: 6px 5px; font-weight: normal;background: #F2F2F2; }
+      #invoice-amount td {margin: 0;padding: 5px; vertical-align: top;}
+      #invoice-amount tr.item td {background:#fff;}
+      #invoice-amount td.item_r{text-align: right;}
+      #invoice-amount td.item_l{text-align: left;white-space: normal;}
+      #invoice-amount td.total{text-align: right;font-weight: bold; /*color: #a10000;*/}
+      #invoice-amount td.action{background: #FFF; width:7%;padding-right:0; white-space:nowrap;text-align:center}
+      #invoice-amount tr#total_tr {background: #F2F2F2;}
+      #invoice-amount td {border-top: 1px solid #F2F2F2;}
+      #invoice-amount tr#discount_tr, #invoice-amount tr#net_total_tr, #invoice-amount tr#vat_tr {color: #777;}
+
+      #invoice-amount .details_th{width:46%}
+      #invoice-amount .details_notax_th{width:54%}
+      #invoice-amount .quantity_th{width:13%}
+      #invoice-amount .subtotal_th{width:18%; text-align:right}
+      #invoice-amount .unitprice_th{width:15%; text-align:right}
+      #invoice-amount .salestax_th{width:8%; text-align:center}
+
+      /* Invoice UK VAT Summary Table */
+      #invoice #invoice-uk-vat-summary{width:100%;border-collapse:collapse;margin:25px 0 0 0;clear:both;border:0; background:#fff; }
+      #invoice tr#invoice-uk-vat-header th{padding:7px 0;border-top: 1px solid #ccc;}
+      #invoice-uk-vat-summary td, #invoice #invoice-uk-vat-summary th{text-align:left; font-size:9pt;padding:2px 0;}
+      #vat-total td, #vat-total th{border-top:1px solid #ccc;}
+    </style>
+  </head>
+  <body>
+    <div class="">
+    <div id="invoice" class="pagestyle" style="padding-top: 30px;">
+      <div id="invoice-header">
+          <img class="logo" src="data:image/png;base64,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" style="width:100%; max-width:100px;" alt="Original" />
+        <div class="vcard" id="company-address">
+          <div class="fn org"><strong>Newsworthy Vision Ltd.</strong></div>
+    <div class="adr">
+      <div class="street-address">
+        Registered Address:<br />Someplace, Somewhere<br />Somewhere else
+    </div>
+      <div class="locality">Somewheresville</div>
+
+      <div id="company-postcode">
+        <span class="region">Somewhereshire</span>
+        <span class="postal-code">SM1 0AA</span>
+    </div>
+      </div>
+                <div id="sales-tax-reg-number">
+                  VAT: 121308562
+                </div>
+                <div class="email">
+                  development@newsworthyvision.com
+                </div>
+                <div class="tel">
+                  +44 (0)7575 701535
+                </div>
+                <div class="url">
+                  http://www.newsworthyvision.com
+                </div>
+            </div>
+          </div>
+        <div id="invoice-info">
+          <h2>Invoice <strong>TESTINV01</strong></h2>
+          <h3>22 May 2017</h3>
+          <p id="invoice-total">&#163;1,800.00</p>
+            <p id="payment-terms">
+              <span id="payment-terms-label">Payment:</span> 45 Days
+            </p>
+            <p id="payment-due">
+              Payment due by 06 July 2017
+            </p>
+            <p id="payment-total">&#163;1,800.00</p>
+        </div>
+        <div class="vcard" id="client-details">
+            <div class="org">Test Company</div>
+    <div class="adr">
+      <div class="street-address">
+        Testing Way
+    </div>
+      <div class="locality">Testworth</div>
+
+
+      <div id="client-postcode">
+        <span class="region">Testcity</span>
+        <span class="postal-code">SW1A 4AA</span>
+    </div>
+      </div>
+        </div>
+        <table id="invoice-amount">
+          <thead>
+            <tr id="header_row">
+                <th class="quantity_th">Quantity</th>
+                <th class="left details_th">Details</th>
+                <th class="unitprice_th">Unit Price (£)</th>
+                <th class="salestax_th">VAT</th>
+                <th class="subtotal_th">Net Subtotal (£)</th>
+            </tr>
+          </thead>
+          <tfoot>
+              <tr id="net_total_tr">
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2" class="item_r">Net Total</td>
+                <td class="item_r" id="net_total_amount">1,500.00</td>
+              </tr>
+              <tr id="vat_tr">
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2" class="item_r">VAT</td>
+                <td class="item_r" id="sales_tax_amount">300.00</td>
+              </tr>
+            <tr id="total_tr">
+                <td colspan="2">&nbsp;</td>
+              <td colspan="2" class="total" id="total_currency"><span class="currency">GBP </span>Total</td>
+              <td class="total" id="total_amount">&#163;1,800.00</td>
+            </tr>
+          </tfoot>
+
+            <tbody id="invoice_items" data-behaviour="sortable">
+              <tr data-model="invoice_item" class="item odd" id="invoice_item_42616211">
+      <td class="item_l quantity_td">
+        2 Days
+      </td>
+
+      <td class="item_l description_td">
+        15 &#38; 16/06/2017 - Shoot Bookings
+                <div class="line_item_controls" style="display:none">
+                  <div class="power_actions alt">
+                    <span class="action_title" title="002: Crew Hire">
+                      <em><span>Crew Hire</span></em>
+                    </span>
+                      <div class="content">
+                        <ul><li><a title="003: Equipment Hire - Income" data-id="53578" class="category" href="/invoices/20040029/invoice_items/42616211">Equipment Hire - Income</a></li><li><a title="004: Expenses" data-id="54090" class="category" href="/invoices/20040029/invoice_items/42616211">Expenses</a></li><li><a title="001: Sales" data-id="30994" class="category" href="/invoices/20040029/invoice_items/42616211">Sales</a></li><li><a title="005: Transmission Costs" data-id="297666" class="category" href="/invoices/20040029/invoice_items/42616211">Transmission Costs</a></li></ul>
+                      </div>
+                  </div>
+                </div>
+        </td>
+
+      <td class="item_r price_td">
+          300.00
+      </td>
+
+        <td class="item_r taxrate_td">
+              20%
+        </td>
+
+      <td class="item_r subtotal_td" id="invoice_item_42616211">
+          600.00
+      </td>
+    </tr>
+    <tr data-model="invoice_item" class="item even" id="invoice_item_42616214">
+      <td class="item_l quantity_td">
+        1 Day
+      </td>
+
+      <td class="item_l description_td">
+        18/06/2017 - Shoot Booking
+                <div class="line_item_controls" style="display:none">
+                  <div class="power_actions alt">
+                    <span class="action_title" title="002: Crew Hire">
+                      <em><span>Crew Hire</span></em>
+                    </span>
+                      <div class="content">
+                        <ul><li><a title="003: Equipment Hire - Income" data-id="53578" class="category" href="/invoices/20040029/invoice_items/42616214">Equipment Hire - Income</a></li><li><a title="004: Expenses" data-id="54090" class="category" href="/invoices/20040029/invoice_items/42616214">Expenses</a></li><li><a title="001: Sales" data-id="30994" class="category" href="/invoices/20040029/invoice_items/42616214">Sales</a></li><li><a title="005: Transmission Costs" data-id="297666" class="category" href="/invoices/20040029/invoice_items/42616214">Transmission Costs</a></li></ul>
+                      </div>
+                  </div>
+                </div>
+        </td>
+
+      <td class="item_r price_td">
+          300.00
+      </td>
+
+        <td class="item_r taxrate_td">
+              20%
+        </td>
+
+      <td class="item_r subtotal_td" id="invoice_item_42616214">
+          300.00
+      </td>
+    </tr>
+    <tr data-model="invoice_item" class="item odd" id="invoice_item_42616217">
+      <td class="item_l quantity_td">
+        2 Days
+      </td>
+
+      <td class="item_l description_td">
+        20 &#38; 21/06/2017 - Shoot Bookings
+                <div class="line_item_controls" style="display:none">
+                  <div class="power_actions alt">
+                    <span class="action_title" title="002: Crew Hire">
+                      <em><span>Crew Hire</span></em>
+                    </span>
+                      <div class="content">
+                        <ul><li><a title="003: Equipment Hire - Income" data-id="53578" class="category" href="/invoices/20040029/invoice_items/42616217">Equipment Hire - Income</a></li><li><a title="004: Expenses" data-id="54090" class="category" href="/invoices/20040029/invoice_items/42616217">Expenses</a></li><li><a title="001: Sales" data-id="30994" class="category" href="/invoices/20040029/invoice_items/42616217">Sales</a></li><li><a title="005: Transmission Costs" data-id="297666" class="category" href="/invoices/20040029/invoice_items/42616217">Transmission Costs</a></li></ul>
+                      </div>
+                  </div>
+                </div>
+        </td>
+
+      <td class="item_r price_td">
+          300.00
+      </td>
+
+        <td class="item_r taxrate_td">
+              20%
+        </td>
+
+      <td class="item_r subtotal_td" id="invoice_item_42616217">
+          600.00
+      </td>
+    </tr>
+
+            </tbody>
+
+        </table>
+          <div id="invoice-other">
+            <h2>Other Information</h2>
+              <div id="company-reg-number">
+                <strong>Company Registration Number: </strong>01234567
+              </div>
+
+          </div>
+        <div id="payment-details">
+            <h2>Payment Details</h2>
+              <div id="bank_name">Barclays Bank PLC.</div>
+              <div id="sort-code">
+                <strong>Bank/Sort Code:</strong> 12-34-56
+              </div>
+              <div id="account-number">
+                <strong>Account Number:</strong> 98765432
+              </div>
+
+            <div id="payment-reference">
+              <strong>Payment Reference:</strong> SKYCAM2017
+            </div>
+        </div>
+
+          <div id="comments">
+              <p>Newsworthy Vision is registered for VAT, and it has been added to applicable services on this invoice. (Except for clients with payment systems based outside the European Union)<br/><br/>If you have any concerns or questions about this invoice, please don&#39;t hesitate to contact me. Many thanks for your business.<br/><br/>Regards,<br/><br/>Nick Smith<br/>Company Director<br/>Newsworthy Vision Ltd.<br/>development@newsworthyvision.com<br/>+44 (0)1234 567890<p>
+
+
+          </div>
+
+      </div>
+    </div>
+  </body>
+</html>
